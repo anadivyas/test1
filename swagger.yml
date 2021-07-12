@@ -1,7 +1,7 @@
 #tells Connexion what version of the Swagger API is being used
 swagger: "2.0"
 info:
-  description: This is the swagger file that goes with our server code
+  description: This is swagger file that goes with our server code to trigger events
   version: "1.0.0"
   title: Event-trigger
 
@@ -16,37 +16,7 @@ basePath: /api
 # Paths supported by the server application
 paths:
   /events:  #defines one path of your URL endpoint.
-    get:    #defines the HTTP method this URL endpoint will respond to (this is get method)
-      operationId: events.read_all
-      tags: #helps in grouping for ui interface
-        - Events
-      summary: Read the entire list of events
-      description: Read the list of event
-      parameters:
-        - name: length
-          in: query
-          type: integer
-          description: Number of event to get from events
-          required: false
-        - name: offset
-          in: query
-          type: integer
-          description: Offset from beginning of list where to start gathering events
-          required: false
-      responses:
-        200:
-          description: Successfully read event list operation
-          schema: #defines the response as a schema, or structure
-            type: array #defines the structure of the schema as an array
-            items:
-              properties:
-                eventtype:  #first key
-                  type: string
-                uuid:  #second key
-                  type: string
-                timestamp:
-                  type: string
-
+    
     post:
       operationId: events.create
       tags:
@@ -71,30 +41,6 @@ paths:
         201:
           description: Successfully created event in list
 
-  /events/{uuid}:
-    get:
-      operationId: events.read_one
-      tags:
-        - Events
-      summary: Read one event from the events list
-      description: Read one event from the event list
-      parameters:
-        - name: uuid
-          in: path
-          description: uuid of event to get from list
-          type: string
-          required: True
-      responses:
-        200:
-          description: Successfully read event from event list operation
-          schema:
-            properties:
-              eventtype:
-                type: string
-              uuid:
-                type: string
-              timestamp:
-                type: string
 
  
 
